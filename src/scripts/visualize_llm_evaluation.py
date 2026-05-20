@@ -9,24 +9,15 @@ def main():
         data = json.load(f)
 
     methods = ["fixed_length", "sentence_based", "semantic"]
-    points = [data["points"][m] for m in methods]
     win_rate = [data["win_rate"][m] for m in methods]
 
     method_labels = ["Fixed Length", "Sentence Based", "Semantic"]
 
-    fig_bar, ax_bar = plt.subplots(figsize=(6, 6))
+    fig_wr, ax_wr = plt.subplots(figsize=(6, 6))
 
-    x = np.arange(len(method_labels))
-    width = 0.25
-
-    ax_bar.bar(x - width / 2, points, width, label="Avg. Points", alpha=0.8)
-    ax_bar.bar(x + width / 2, win_rate, width, label="Win Rate", alpha=0.8)
-
-    ax_bar.set_title("Points and Win Rate")
-    ax_bar.set_xticks(x)
-    ax_bar.set_xticklabels(method_labels)
-    ax_bar.legend()
-    ax_bar.grid(axis="y", alpha=0.3)
+    ax_wr.bar(method_labels, win_rate, color="steelblue", alpha=0.7)
+    ax_wr.set_title("Win Rate")
+    ax_wr.grid(axis="y", alpha=0.3)
 
     fig_mat, ax_mat = plt.subplots(figsize=(6, 6))
 
